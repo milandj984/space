@@ -1,0 +1,32 @@
+{% extends 'stars/basic.html' %}
+
+
+{% block title %}My Groups{% endblock %}
+
+
+{% block col-4 %}
+    <br>
+    <a href="{% url 'stars:new_group' %}"><button type="button" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus-sign"></span> Create new group</button></a>
+{% endblock %}
+
+
+{% block col-8 %}
+    {% if groups %}
+        <h4 class="col-4-color">Here is a list of your groups</h4><br>
+        {% for group in groups %}
+            <div style="padding-left: 25px; padding-right: 25px; padding-top: 15px; padding-bottom: 6px; width: 50%; margin: auto; border-radius: 10px" class="group">
+                <h5><a href="{% url 'stars:group_details' group.slug %}">{{ group.title }}</a></h5>
+                <small>{{ group.description | linebreaksbr }}</small>
+                <hr>
+                <ul style="margin-left: -40px" id="one">
+                    <li>Members: {{ group.user_groups_set.count }}</li>
+                    <li>Posts: {{ group.posts_set.count }}</li>
+                </ul>
+            </div>
+            <br>
+        {% endfor %}
+    {% else %}
+        <h5 class="col-4-color">You haven't created any groups yet!</h5>
+    {% endif %}
+{% endblock %}

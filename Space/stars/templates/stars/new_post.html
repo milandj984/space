@@ -1,0 +1,26 @@
+{% extends 'stars/basic.html' %}
+
+
+{% block title %}New Post{% endblock %}
+
+
+{% block col-4 %}
+    <h3>Feel in the form to post new message</h3>
+{% endblock %}
+
+
+{% block col-8 %}
+    <form method="post">
+    {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label class="col-4-color">{{ field.label_tag }}</label>
+                <div class="form-row">
+                    <div class="col">{{ field }}</div>
+                    <div class="col form-error">{{ field.errors }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    <button type="submit" class="btn btn-primary">Create post</button>
+    </form>
+{% endblock %}

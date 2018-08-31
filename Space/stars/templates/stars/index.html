@@ -1,0 +1,38 @@
+{% extends 'stars/basic.html' %}
+
+
+{% block title %}Space{% endblock %}
+
+
+{% block col-4 %}
+    {% if not user.is_authenticated %}
+        <h1>Welcome to space blog. Please <a style="color: rgba(87,142,255,0.9);" href="{% url 'stars:register' %}">register</a> or
+            <a style="color: rgba(87,142,255,0.9);" href="{% url 'stars:user_login' %}">login</a> to get started.</h1>
+    {% else %}
+        <h2>Hello {{ user }}</h2>
+        <h4>Welcome to the groups page. Select a group with the shared interest or <br><br><a href="{% url 'stars:new_group' %}"><button type="button" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus-sign"></span> Create new group</button></a></h4>
+    {% endif %}
+{% endblock %}
+
+
+{% block col-8 %}
+    {% if user.is_authenticated %}
+        {% if groups %}
+            {% for group in groups %}
+                <div style="padding-left: 25px; padding-right: 25px; padding-top: 15px; padding-bottom: 6px; width: 50%; margin: auto; border-radius: 10px" class="group">
+                    <h5><a href="{% url 'stars:group_details' group.slug %}">{{ group.title }}</a></h5>
+                    <small>{{ group.description | linebreaksbr }}</small>
+                    <hr>
+                    <ul style="margin-left: -40px" id="one">
+                        <li>Members: {{ group.user_groups_set.count }}</li>
+                        <li>Posts: {{ group.posts_set.count }}</li>
+                    </ul>
+                </div>
+                <br>
+            {% endfor %}
+        {% else %}
+            <h5 class="col-4-color">No groups yet</h5>
+        {% endif %}
+    {% endif %}
+{% endblock %}

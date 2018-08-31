@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'stars_css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'stars_css/Glyphs.css' %}">
+    <link rel="stylesheet" href="{% static 'stars_css/stars.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Faster+One|Libre+Baskerville|Orbitron" rel="stylesheet">
+</head>
+<body>
+
+
+<nav style="background: radial-gradient(#1946d6 10%, #0c305c 50%); position: sticky; top: 0; z-index: 10" class="navbar navbar-expand-lg navbar-dark">
+    <ul class="navbar-nav mr-auto ml-4percent">
+        <li class="nav-item ml-5percent">
+        <a style="font-size: 1.5rem" class="nav-link brand" href="{% url 'stars:index' %}">Space</a>
+        </li>
+    </ul>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ml-auto mr-5percent">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'stars:post' %}">Post</a>
+            </li>
+            <li class="nav-item">
+            <a style="margin-right: 30px" class="nav-link" href="{% url 'stars:my_groups' %}">My Groups</a>
+            </li>
+            <li class="navbar-text">{{ user }}</li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="glyphicon glyphicon-user"></div>
+                </a>
+                <div style="width: -moz-max-content; width: max-content; left: -10px" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'stars:user_logout' %}">Logout</a>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+{% if user.is_authenticated %}
+<div title="Uploads" class="hidden-menu">
+    <div style="margin-top: 8px;">
+        <div class="burger"></div>
+        <div class="burger"></div>
+        <div class="burger"></div>
+    </div>
+</div>
+
+<div class="menu">
+    <div><a href="{% url 'stars:upload' %}">Upload picture</a></div>
+    <div><a href="{% url 'stars:space_uploads' %}">Uploaded pictures</a></div>
+    <div>Hidden menu</div>
+</div>
+{% endif %}
+
+{% block pictures %}
+
+{% endblock %}
+
+<br><br>
+<div class="custom-font" style="margin-right: 3%; margin-left: 3%">
+    <div class="row justify-content-around">
+      <div style="color: rgba(26, 83, 255, 0.9);" class="col-4"><div style="position: sticky; top: 115px;">{% block col-4 %}{% endblock %}</div></div>
+      <div class="col-7">{% block col-8 %}{% endblock %}</div>
+    </div>
+</div>
+
+
+
+<script src="{% static 'stars_js/JQuery.js' %}"></script>
+<script src="{% static 'stars_js/ajax_libs_popper.js_1.14.3_umd_popper.js' %}"></script>
+<script src="{% static 'stars_js/bootstrap_4.1.1_js_bootstrap.js' %}"></script>
+<script src="{% static 'stars_js/jquery-ui.js' %}"></script>
+<script src="{% static 'stars_js/stars.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'stars/basic.html' %}
+
+
+{% block title %}Space uploads{% endblock %}
+
+
+{% block pictures %}
+    <br>
+    <div class="container">
+            {% for picture in pictures %}
+                <img src="{{ picture.picture.url }}" alt=""><br>
+                <p style="color: rgba(26, 83, 255, 0.9);"><span class="glyphicon glyphicon-user"></span> {{ picture.user }}</p>
+                <br><br>
+            {% endfor %}
+    </div>
+
+{% endblock %}

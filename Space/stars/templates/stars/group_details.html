@@ -1,0 +1,61 @@
+{% extends 'stars/basic.html' %}
+
+
+{% block title %}Group details{% endblock %}
+
+
+{% block col-4 %}
+    <h3>Welcome to "{{ group.title }}" group</h3>
+    <h6>Created by {{ group.user }} on {{ group.created_on }}</h6><br>
+    <form method="post">
+    {% csrf_token %}
+        {% if user != group.user %}
+            {% if not member %}
+                <button type="submit" name="join" class="btn btn-warning btn-sm">Join group</button>
+            {% else %}
+                <button type="submit" name="leave" class="btn btn-warning btn-sm">Leave group</button>
+            {% endif %}
+        {% else %}
+            <span id="confirm-delete" class="confirm-popuptext">
+                <span>Are you sure?</span><br>
+                <button style="background-color: transparent; border-color: transparent; color: white; cursor: pointer; padding-left: 0;" type="submit" name="delete">Yes</button>
+                <span id="confirm-delete-hide" style="cursor: pointer">No</span>
+            </span>
+            <button id="delete" type="button" class="btn btn-danger btn-sm">Delete group</button>
+        {% endif %}
+        {% if member or user == group.user %}
+            <button style="margin-left: 5px" type="button" id="show-post-form" class="btn btn-success btn-sm">Add post</button>
+        {% endif %}
+    </form>
+
+    <br><br>
+    <form style="display: none" id="post-form" method="post">
+    {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">{{ field }}</div>
+                    <div class="col form-error">{{ field.errors }}</div>
+                </div>
+            </div>
+        {% endfor %}
+        <button id="post" type="submit" name="add" class="btn btn-primary btn-sm">Post</button>
+        <button id="hide-post" style="margin-left: 5px" type="button" class="btn btn-warning btn-sm">Cancel</button>
+    </form>
+{% endblock %}
+
+
+{% block col-8 %}
+    <div class="col-4-color">
+        <h5>{{ group.description }}</h5>
+        <br>
+        {% for post in group.posts_set.all %}
+            <div style="background-color: rgba(167,201,255,0.9); border-radius: 10px; padding: 10px; width: 50%; margin: auto">
+                <h6><a href=""><div class="glyphicon glyphicon-user"></div> {{ post.user }}</a></h6>
+                <hr>
+                <p>{{ post.text | linebreaksbr }}</p>
+            </div>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}

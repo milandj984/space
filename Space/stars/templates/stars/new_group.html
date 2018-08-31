@@ -1,0 +1,27 @@
+{% extends 'stars/basic.html' %}
+
+
+{% block title %}New Group{% endblock %}
+
+
+{% block col-4 %}
+    <h3>Feel in the form to create new group</h3>
+{% endblock %}
+
+
+{% block col-8 %}
+    <form method="post">
+    {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label class="col-4-color">{{ field.label_tag }}</label>
+                <div class="form-row">
+                    <div class="col">{{ field }}</div>
+                    <div class="col form-error">{% if error and forloop.first %}<li style="margin-left: 37px">{{ error }}</li>{% else %}{{ field.errors }}{% endif %}</div>
+                </div>
+            </div>
+        {% endfor %}
+        <br>
+    <button type="submit" class="btn btn-primary">Create group</button>
+    </form>
+{% endblock %}

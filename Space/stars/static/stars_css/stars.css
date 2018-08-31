@@ -1,0 +1,141 @@
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../stars_images/1777.jpg");
+    /*-webkit-animation: wallpapers 5s infinite;*/
+    /*-moz-animation: wallpapers 5s infinite;*/
+    /*-o-animation: wallpapers 5s infinite;*/
+    /*animation: wallpapers 5s infinite;*/
+}
+
+@keyframes wallpapers {
+    25% {background-image: url("../stars_images/37228268-space-wallpaper-hd.jpg")}
+    50% {background-image: url("../stars_images/Earth-From-Space-hd-wallpaper.jpg")}
+    75% {background-image: url("../stars_images/wallpaper2you_347831.jpg")}
+    100% {background-image: url("../stars_images/1777.jpg")}
+}
+@-webkit-keyframes wallpapers {
+    25% {background-image: url("../stars_images/37228268-space-wallpaper-hd.jpg")}
+    50% {background-image: url("../stars_images/Earth-From-Space-hd-wallpaper.jpg")}
+    75% {background-image: url("../stars_images/wallpaper2you_347831.jpg")}
+    100% {background-image: url("../stars_images/1777.jpg")}
+}
+
+.brand{
+    font-family: 'Faster One', cursive;
+}
+nav{
+
+    font-family: 'Orbitron', sans-serif;
+}
+
+.custom-font {
+    font-family: 'Libre Baskerville', serif;
+}
+
+.group{
+    background-color: rgba(167,201,255,0.9);
+}
+
+
+.mr-5percent{
+    margin-right: 5%;
+}
+.ml-4percent{
+    margin-left: 4%;
+}
+
+.col-4-color{
+    color: rgba(26, 83, 255, 0.9);
+    text-align: center;
+}
+
+.form-error{
+    color: rgba(26, 83, 255, 0.9);
+    padding-top: 5px;
+}
+
+#one{
+    list-style-type: none;
+}
+
+#one li{
+    display: inline;
+    margin-right: 25px;
+}
+
+.confirm-popuptext {
+    visibility: hidden;
+    width: -moz-max-content;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    z-index: 2;
+    top: 327px;
+}
+
+/* Popup arrow */
+.confirm-popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-top-color: #555;
+}
+
+.show{
+    visibility: visible;
+}
+
+.hidden-menu{
+    position: fixed;
+    background-color: rgba(250, 252, 255, 0.94);
+    height: 40px;
+    width: 50px;
+    z-index: 1;
+    top: 151px;
+    right: 0;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    cursor: pointer;
+}
+
+.burger{
+    width: 30px;
+    height: 4px;
+    background-color: black;
+    margin: auto;
+    margin-top: 5px;
+}
+
+.menu{
+    position: fixed;
+    top: 150px;
+    right: -160px;
+    color: #c03928;
+    background-color: rgba(250, 252, 255, 0.94);
+    width: 160px;
+    border: 1px solid black;
+    z-index: 1;
+    box-shadow: 4px 3px 7px 2px rgba(107, 110, 113, 0.94);
+}
+
+.menu div:hover{
+    background-color: rgba(163,165,168,0.94);
+}
+
+.menu div{
+    text-align: center;
+    padding-top: 5px;
+    height: 35px;
+}
+
+.menu div a{
+    text-decoration: none;
+}

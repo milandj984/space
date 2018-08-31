@@ -1,0 +1,22 @@
+{% extends 'stars/basic.html' %}
+
+
+{% block title %}Upload{% endblock %}
+
+
+{% block col-4 %}
+   <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label class="col-4-color">{{ field.label_tag }}</label>
+                <div class="form-row">
+                    <div class="col">{{ field }}</div>
+                    <div class="col form-error">{{ field.errors }}</div>
+                </div>
+            </div>
+        {% endfor %}
+        <p style="color: red">{{ error }}</p>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+{% endblock %}
